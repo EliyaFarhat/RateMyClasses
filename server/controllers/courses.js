@@ -5,6 +5,7 @@
 //thanks for answering
 //thanks for answering
 // YOURE WELCOME FREAKBOB
+//its hard being freeaky 
 export const getCourses = (req, res) => {
     res.send("THIS WORKS!");
 }
