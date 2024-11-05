@@ -4,7 +4,7 @@
 //thanks for answering
 //thanks for answering
 //thanks for answering
-
+// YOURE WELCOME FREAKBOB
 export const getCourses = (req, res) => {
     res.send("THIS WORKS!");
 }
