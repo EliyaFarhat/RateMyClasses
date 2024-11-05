@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+
+:root {
+  --background-dark: #232323;
+  --nice-color: #ff004f;
+  --nav-color: #080808;
+  --textcolor: #ebecf3;
+  --background: #111;
+
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lilita One", cursive;
+  font-weight: 100;
+}
+body {
+  scroll-behavior: smooth;
+  max-width: 100vw;
+  background-color: var(--background);
+  overflow-x: hidden;
+
+}
+
