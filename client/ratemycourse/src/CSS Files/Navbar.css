@@ -29,10 +29,17 @@
     background-color: rgb(0, 0, 0);
     cursor: pointer;
     transition: background-color 0.3s ease;
+
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+
+
+
 }
 
 .nav-links button:hover {
-    background-color: #222;
+    background-color: #f0356a;
 }
 
 .nav-links a:hover {

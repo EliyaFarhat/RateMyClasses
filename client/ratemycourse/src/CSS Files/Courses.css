@@ -1,0 +1,54 @@
+/* CSS Files/Courses.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+
+form {
+
+margin-bottom: 10px;
+
+}
+input[type="text"] {
+    padding: 10px;
+    font-size: 1rem ;
+    margin-right: 10px;
+    border-radius: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+p {
+    color: #888;
+    font-size: 0.9rem;
+}
