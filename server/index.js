@@ -7,18 +7,17 @@ import dotenv from 'dotenv';
 // routes
 import courseRoutes from './routes/courses.js'
 
-
 dotenv.config(); // Load .env variables
 
 const app = express();
 
-// courses route
-app.use('/courses', courseRoutes);
-// accounts route
-
+// Middleware should come BEFORE routes
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+// Routes come after middleware
+app.use('/courses', courseRoutes);
 
 const CONNECTION_URL = process.env.MONGO_URI; // Use environment variable
 const PORT = process.env.PORT || 5000;

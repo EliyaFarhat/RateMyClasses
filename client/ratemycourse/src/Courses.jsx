@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './CSS Files/Courses.css'
-import { createCourse } from '../../../server/controllers/courses';
+import './CSS Files/Courses.css';
 
 const Courses = () => {
-    const [query, setQuery] = useState(''); //input from client(user)
-    const [courses, setCourses] = useState([]); 
+    const [query, setQuery] = useState(''); // Input from user
+    const [courses, setCourses] = useState([]); // Holds the data from the backend
 
-    const handleSearch = async (e) => { //e = event object
+    const handleSearch = async (e) => {
         e.preventDefault();
-        console.log('Search submitted with query:', query); // Track the query value
+        console.log(query); // Track the query value
         try {
             const response = await axios.get(`http://localhost:5000/courses/search?query=${query}`);
-            setCourses(response.data); //setcourses will hold the data of whatever we get from the server
-            console.log(courses)
+            setCourses(response.data); // Set the courses to the data received from the server
         } catch (error) {
             console.error('Error searching courses:', error);
         }
@@ -36,8 +34,8 @@ const Courses = () => {
                     <ul>
                         {courses.map((course) => (
                             <li key={course._id}>
-                                <h3>{course.courseName}</h3>
-                                <p>{course.description}</p>
+                                <p><strong>Course Code:</strong> {course.courseCode}</p>
+                                <p><strong>Description:</strong> {course.description}</p>
                             </li>
                         ))}
                     </ul>

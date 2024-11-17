@@ -14,42 +14,33 @@ import Course from '../models/courseModel.js';
 
 export const getCourses = (req, res) => {
     res.send("THIS WORKS!");
+    console.log("yo dawg")
 }
- 
 
-export const createCourse = async (req, res) => {
-    const { courseName, description, school, courseCode, prerequisites, antirequisites } = req.body;
-
-    const newCourse = new Course({
-        courseName,
-        description,
-        school,
-        courseCode,
-        prerequisites,
-        antirequisites
-    });
-
-    try {
-        const savedCourse = await newCourse.save();
-        res.status(201).json(savedCourse);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
 
 
 export const searchCourses = async (req, res) => {
     try {
-        const { query } = req.query;
-        if (!query) {
-            return res.status(400).json({ error: "Query parameter is required" });
+        console.log('Search query received:', req.query.query); // Debug log
+        
+        const searchTerm = req.query.query;
+        if (!searchTerm) {
+            return res.status(400).json({ message: "Search term is required" });
         }
 
-        const courses = await Course.find({ 
-            courseName: { $regex: query, $options: "i" } // Case-insensitive regex search
+        const courses = await Course.find({
+            $or: [
+                { courseName: { $regex: searchTerm, $options: 'i' } },
+                { description: { $regex: searchTerm, $options: 'i' } },
+                { courseCode: { $regex: searchTerm, $options: 'i' } }
+            ]
         });
-        res.json(courses);
+
+        console.log('Found courses:', courses); // Debug log
+
+        res.status(200).json(courses); // Send courses back to the frontend
     } catch (error) {
-        res.status(500).json({ error: "Server error" });
+        console.error('Search error:', error);
+        res.status(500).json({ message: "Error searching courses" });
     }
 };
