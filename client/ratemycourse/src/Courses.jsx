@@ -4,16 +4,16 @@ import './CSS Files/Courses.css'
 import { createCourse } from '../../../server/controllers/courses';
 
 const Courses = () => {
-    const [query, setQuery] = useState(''); //expects a string
-    const [courses, setCourses] = useState([]); //expects an array
+    const [query, setQuery] = useState(''); //input from client(user)
+    const [courses, setCourses] = useState([]); 
 
     const handleSearch = async (e) => { //e = event object
         e.preventDefault();
         console.log('Search submitted with query:', query); // Track the query value
         try {
-            const response = await axios.get(`/courses/search?query=${query}`);
+            const response = await axios.get(`http://localhost:5000/courses/search?query=${query}`);
             setCourses(response.data); //setcourses will hold the data of whatever we get from the server
-            console.log(setCourses)
+            console.log(courses)
         } catch (error) {
             console.error('Error searching courses:', error);
         }

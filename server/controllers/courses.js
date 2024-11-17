@@ -39,23 +39,17 @@ export const createCourse = async (req, res) => {
 
 
 export const searchCourses = async (req, res) => {
-    const { query } = req.query;
-
     try {
-        // Search for courses by course name or description (you can adjust this based on your needs)
-        const courses = await Course.find({
-            $or: [
-                { courseName: { $regex: query, $options: 'i' } },  // Case-insensitive regex search on courseName
-                { description: { $regex: query, $options: 'i' } }  // Case-insensitive regex search on description
-            ]
-        });
-
-        if (courses.length === 0) {
-            return res.status(404).json({ message: "No courses found" });
+        const { query } = req.query;
+        if (!query) {
+            return res.status(400).json({ error: "Query parameter is required" });
         }
 
+        const courses = await Course.find({ 
+            courseName: { $regex: query, $options: "i" } // Case-insensitive regex search
+        });
         res.json(courses);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ error: "Server error" });
     }
 };
