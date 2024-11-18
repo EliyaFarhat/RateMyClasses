@@ -1,21 +1,21 @@
-import { useState } from 'react'
-import './CSS Files/App.css'
-import Navbar from './Navbar';
-import Course from './Courses';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './Layout'; // Import the new Layout component
+import Courses from './Courses';
+import CourseResults from './CourseResults'; // Import the CourseResults component
 
-//app jsx serves to keep the format of what will appear on the webpage 
-//we will use call all references here
-function App() {
-
-
-
+const App = () => {
   return (
-    <>
-      <Navbar />
-      <Course/>
-   
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {/* Nested routes under Layout */}
+          <Route index element={<Courses />} /> {/* This is the home page with courses */}
+          <Route path="courses/results/:query" element={<CourseResults />} /> {/* Search results page */}
+        </Route>
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;

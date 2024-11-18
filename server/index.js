@@ -12,8 +12,7 @@ dotenv.config(); // Load .env variables
 const app = express();
 
 // Middleware should come BEFORE routes
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+
 app.use(cors());
 
 // Routes come after middleware

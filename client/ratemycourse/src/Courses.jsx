@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import './CSS Files/Courses.css';
 
 const Courses = () => {
     const [query, setQuery] = useState(''); // Input from user
-    const [courses, setCourses] = useState([]); // Holds the data from the backend
+    const navigate = useNavigate(); // React Router's hook for navigation
 
-    const handleSearch = async (e) => {
+    const handleSearch = (e) => {
         e.preventDefault();
-        console.log(query); // Track the query value
-        try {
-            const response = await axios.get(`http://localhost:5000/courses/search?query=${query}`);
-            setCourses(response.data); // Set the courses to the data received from the server
-        } catch (error) {
-            console.error('Error searching courses:', error);
+        if (query.trim()) {
+            navigate(`/courses/results/${query}`); // Redirect to results page with query
         }
     };
 
@@ -30,18 +26,7 @@ const Courses = () => {
             </form>
 
             <div>
-                {courses.length > 0 ? (
-                    <ul>
-                        {courses.map((course) => (
-                            <li key={course._id}>
-                                <p><strong>Course Code:</strong> {course.courseCode}</p>
-                                <p><strong>Description:</strong> {course.description}</p>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>Examples: CPS420, MTH110, RTA928</p>
-                )}
+                <p>Examples: CPS420, MTH110, RTA928</p>
             </div>
         </div>
     );
