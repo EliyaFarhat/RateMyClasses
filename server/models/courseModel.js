@@ -6,12 +6,12 @@ const courseSchema = mongoose.Schema({
     school: { type: String },
     courseCode: { type: String, required: true, unique: true },
     prerequisites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }], // Array of references to other courses
-    antirequisites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]  // Array of references to courses that conflict with this one
+    gpaWeight: {type: String},
+    weeklyContact: {type: String},
+    major: { type: String, required: true }
 });
 
-
-
-
 const Course = mongoose.model('Course', courseSchema);
+
 
 export default Course;
