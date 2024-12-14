@@ -9,7 +9,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* Nested routes under Layout */}
+  
           <Route index element={<Courses />} /> {/* This is the home page with courses */}
           <Route path="courses/results/:query" element={<CourseResults />} /> {/* Search results page */}
         </Route>
