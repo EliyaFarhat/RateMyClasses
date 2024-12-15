@@ -1,0 +1,100 @@
+/* Container for the entire results page */
+.results-container {
+    margin: 20px auto;
+    max-width: 900px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Title */
+.results-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Cards container */
+.course-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Individual course card */
+.course-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000000;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.course-card:hover {
+    transform: scale(1.02);
+}
+
+/* Course info section */
+.course-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.course-code {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffc1;;
+}
+
+.course-description {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.course-rating {
+    font-size: 13px;
+    color: #777;
+}
+
+/* Add Review button */
+.add-review-btn {
+    background-color: #e66b4c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 14px;
+}
+
+.add-review-btn:hover {
+    background-color: #ad5038;
+}
+
+/* Home button */
+.home-btn {
+    display: block;
+    margin: 20px auto;
+    background-color: #ffffc1;
+    color: #000000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.home-btn:hover {
+    background-color: #b4b488;
+}
+
+
+.searchthing{
+    color: white !important;
+}

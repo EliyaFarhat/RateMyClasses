@@ -1,32 +1,39 @@
-import { useState } from 'react'
-import './CSS Files/Navbar.css'
+import { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link for routing
+import './CSS Files/Navbar.css';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen); //manages true or false
-  }
+    setIsOpen(!isOpen); // Manages true or false
+  };
 
   return (
     <nav className="navbar">
-      <div className={'nav-left'}>
-        <a href="#home">Icon One</a>
-        <a href="#about">Icon Two</a>
+      <div className="nav-left">
+        <a href="">Icon One</a>
+        <a href="">FAQ</a>
       </div>
 
+      {/* Burger Menu for small screens */}
       <div className="burger-menu" onClick={toggleMenu}>
         <div className={`burger-bar ${isOpen ? 'open' : ''}`}></div>
         <div className={`burger-bar ${isOpen ? 'open' : ''}`}></div>
         <div className={`burger-bar ${isOpen ? 'open' : ''}`}></div>
       </div>
 
-      <div className={`nav-links ${isOpen ? 'active' : ''}`}> 
-        <button><a href="#Login">Login</a></button>
-        <button><a href="#SignUp">Sign Up</a></button>
+      {/* Navigation Links */}
+      <div className={`nav-links ${isOpen ? 'active' : ''}`}>
+        <button>
+          <Link to="/login" className="nav-link">Login</Link>
+        </button>
+        <button>
+          <Link to="/signup" className="nav-link">Sign Up</Link>
+        </button>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

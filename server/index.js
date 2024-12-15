@@ -17,6 +17,8 @@ app.use(cors());
 
 // Routes come after middleware
 app.use('/courses', courseRoutes);
+app.use('/api/auth', authRoutes);
+
 
 const CONNECTION_URL = process.env.MONGO_URI; // Use environment variable
 const PORT = process.env.PORT || 5000;

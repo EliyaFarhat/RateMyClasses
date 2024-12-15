@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Added useNavigate here
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CSS Files/Results.css'; // Ensure this path is correct
 
@@ -23,31 +23,44 @@ const CourseResults = () => {
         fetchCourses();
     }, [query]);
 
+    const handleAddReview = (courseCode) => {
+        navigate(`/courses/review/${courseCode}`); // Navigate to the Add Review page
+    };
+
     if (loading) {
         return <p>Loading courses...</p>;
     }
 
     return (
-        <div>
-            <h2>Search Results for "{query}"</h2>
-            <div>
-                {courses.length > 0 ? (
-                    <ul>
-                        {courses.map((course) => (
-                            <li key={course._id}>
-                                <p><strong>Course Code:</strong> {course.courseCode}</p>
-                                <p><strong>Description:</strong> {course.description}</p>
-                                <p><strong>Average Rating:</strong>{course.rating}</p>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No courses found for "{query}".</p>
-                )}
-            </div>
-            <div>
-                <button onClick={() => navigate('/')}>Home Page</button>
-            </div>
+        <div className="results-container">
+            <h2 className='searchthing'>Search Results for "{query}"</h2>
+            {courses.length > 0 ? (
+                <div className="course-cards">
+                    {courses.map((course) => (
+                        <div key={course._id} className="course-card">
+                            <div className="course-info">
+                                <h3 className="course-code">{course.courseCode}</h3>
+                                <p className="course-description">{course.description}</p>
+                                <p className="">{course.prerequisite}</p>
+                                <p className="course-rating">
+                                    <strong>Average Rating:</strong> {course.rating || "N/A"}
+                                </p>
+                            </div>
+                            <button
+                                className="add-review-btn"
+                                onClick={() => handleAddReview(course.courseCode)}
+                            >
+                                Add Review
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p>No courses found for "{query}".</p>
+            )}
+            <button onClick={() => navigate('/')} className="home-btn">
+                Home Page
+            </button>
         </div>
     );
 };
