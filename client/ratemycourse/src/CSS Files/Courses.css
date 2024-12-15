@@ -52,3 +52,76 @@ p {
     color: #888;
     font-size: 0.9rem;
 }
+
+
+
+/* Dropdown container */
+.dropdown {
+    background-color: #222; /* Dark background */
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 0;
+    margin-top: 5px;
+    list-style: none;
+    max-height: 200px; /* Limit height */
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    width: 100%;
+
+}
+
+/* Individual suggestion item */
+.suggestion-item {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #fff;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: #333;
+}
+
+/* Course code styling */
+.course-code {
+    font-weight: bold;
+    color: #b46cf7; /* Highlighted color */
+    font-size: 16px;
+}
+
+/* Course name styling */
+.course-name {
+    font-size: 1rem;
+    color: #fff;
+    margin-top: 2px;
+}
+
+/* Course details styling */
+.course-details {
+    font-size: 1rem;
+    color: #bbb;
+    margin-top: 3px;
+}
+
+/* No results message */
+.no-results {
+    text-align: center;
+    color: #aaa;
+    padding: 10px;
+}
+
+
+.dropdown::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.dropdown {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}

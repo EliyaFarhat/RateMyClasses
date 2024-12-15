@@ -28,19 +28,16 @@ export const searchCourses = async (req, res) => {
             return res.status(400).json({ message: "Search term is required" });
         }
 
+        // Match against courseCode first and only
         const courses = await Course.find({
-            $or: [
-                { courseName: { $regex: searchTerm, $options: 'i' } },
-                { description: { $regex: searchTerm, $options: 'i' } },
-                { courseCode: { $regex: searchTerm, $options: 'i' } }
-            ]
-        });
+            courseCode: { $regex: `^${searchTerm}`, $options: 'i' } // Match courseCode as prefix
+        }).limit(10);
 
         console.log('Found courses:', courses); // Debug log
-
-        res.status(200).json(courses); // Send courses back to the frontend
+        res.status(200).json(courses); // Send matched courses back
     } catch (error) {
         console.error('Search error:', error);
         res.status(500).json({ message: "Error searching courses" });
     }
 };
+

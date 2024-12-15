@@ -9,9 +9,6 @@ const courseSchema = mongoose.Schema({
     antirequisites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]  // Array of references to courses that conflict with this one
 });
 
-
-
-
 const Course = mongoose.model('Course', courseSchema);
 
 export default Course;
