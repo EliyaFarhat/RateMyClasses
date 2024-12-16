@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 // routes
 import courseRoutes from './routes/courses.js'
+import authRoutes from './routes/authRoutes.js'
 
 dotenv.config(); // Load .env variables
 
@@ -14,10 +15,11 @@ const app = express();
 // Middleware should come BEFORE routes
 
 app.use(cors());
+app.use(express.json()); // Add this middleware to parse JSON bodies
 
 // Routes come after middleware
 app.use('/courses', courseRoutes);
-app.use('/api/auth', authRoutes);
+app.use('/users', authRoutes);
 
 
 const CONNECTION_URL = process.env.MONGO_URI; // Use environment variable
