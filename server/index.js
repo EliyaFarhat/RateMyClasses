@@ -22,7 +22,7 @@ app.use(express.json()); // Add this middleware to parse JSON bodies
 // Routes come after middleware
 app.use('/courses', courseRoutes);
 app.use('/users', authRoutes);
-app.use('/login', loginRoutes); 
+app.use('/api', loginRoutes);
 
 
 

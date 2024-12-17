@@ -1,48 +1,45 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthContext';
 
-const Login = () => {
-    const [username, setUsername] = useState('');
+const Signup = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const navigate = useNavigate();
-    const { login } = useAuth();
+    const [message, setMessage] = useState(''); // For success or error messages
 
-    const handleLogin = async (e) => {
-        e.preventDefault(); // Prevent form reload
-        setError('');
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setMessage('');
         try {
-            const response = await axios.post('http://localhost:5000/login', {
-                username, // Key matches backend's `req.body.username`
-                password, // Key matches backend's `req.body.password`
+            const response = await axios.post('http://localhost:5000/users', {
+                username: name, // matches backend field
+                email,
+                password,
             });
 
-            // Store JWT token
-            const { token } = response.data;
-            localStorage.setItem('token', token);
-
-            // Set global login state
-            login(username);
-
-            // Redirect on success
-            navigate('/');
+            console.log(response.data); // Debugging log
+            setMessage('Signup successful!'); // Show success message
         } catch (err) {
             console.error(err.response?.data?.message || err.message);
-            setError(err.response?.data?.message || 'Login failed. Check your credentials.');
+            setMessage('Signup failed. Please try again.');
         }
     };
 
     return (
-        <form onSubmit={handleLogin}>
-            <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+            <h2>Signup</h2>
             <input
                 type="text"
                 placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+            />
+            <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
             />
             <input
@@ -52,10 +49,10 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
-            <button type="submit">Login</button>
-            {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
+            <button type="submit">Signup</button>
+            {message && <p>{message}</p>}
         </form>
     );
 };
 
-export default Login;
+export default Signup;

@@ -4,16 +4,16 @@ import './CSS Files/Navbar.css';
 import { useAuth } from './AuthContext'; // Import useAuth hook
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // State for burger menu toggle
-  const { isLoggedIn, logout } = useAuth(); // Use isLoggedIn and logout from AuthContext
+  const [isOpen, setIsOpen] = useState(false);
+  const { isLoggedIn, username, logout } = useAuth(); // Destructure username
   const navigate = useNavigate();
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen); // Toggles the menu open/close state
+    setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
-    logout(); // Call logout from AuthContext
+    logout();
     navigate('/'); // Redirect to the home page
   };
 
@@ -34,9 +34,13 @@ function Navbar() {
       {/* Navigation Links */}
       <div className={`nav-links ${isOpen ? 'active' : ''}`}>
         {isLoggedIn ? (
-          <button onClick={handleLogout} className="nav-link">
-            Log Out
-          </button>
+          <>
+          <span className="nav-username">Hello, {username || 'Guest'}</span>
+
+            <button onClick={handleLogout} className="nav-link">
+              Log Out
+            </button>
+          </>
         ) : (
           <>
             <button>

@@ -1,31 +1,38 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const auth = JSON.parse(localStorage.getItem('auth'));
-    return auth?.isLoggedIn || false;
+  const [authState, setAuthState] = useState({
+    isLoggedIn: false,
+    username: '',
   });
 
+  useEffect(() => {
+    const auth = JSON.parse(localStorage.getItem('auth'));
+    if (auth && auth.isLoggedIn) {
+      setAuthState(auth);
+    }
+  }, []);
+
   const login = (username) => {
-    localStorage.setItem('auth', JSON.stringify({ isLoggedIn: true, username }));
-    setIsLoggedIn(true);
+    const newAuthState = { isLoggedIn: true, username };
+    localStorage.setItem('auth', JSON.stringify(newAuthState));
+    setAuthState(newAuthState);
   };
 
   const logout = () => {
     localStorage.removeItem('auth');
-    setIsLoggedIn(false);
+    setAuthState({ isLoggedIn: false, username: '' });
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ ...authState, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Consistent named export for the custom hook
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
