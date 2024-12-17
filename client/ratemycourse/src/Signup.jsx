@@ -1,58 +1,61 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
-const Signup = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+const Login = () => {
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState(''); // To display success or error messages
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const { login } = useAuth();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleLogin = async (e) => {
+        e.preventDefault(); // Prevent form reload
+        setError('');
+
         try {
-            const response = await axios.post('http://localhost:5000/users', {
-                username: name,
-                email,
-                password,
+            const response = await axios.post('http://localhost:5000/login', {
+                username, // Key matches backend's `req.body.username`
+                password, // Key matches backend's `req.body.password`
             });
-            console.log(response.data); // Log the server's response
-            setMessage('Signup successful!'); // Update success message
-        } catch (error) {
-            console.error(error.response?.data?.message || error.message); // Log the error
-            setMessage('Signup failed. Please try again.'); // Update error message
+
+            // Store JWT token
+            const { token } = response.data;
+            localStorage.setItem('token', token);
+
+            // Set global login state
+            login(username);
+
+            // Redirect on success
+            navigate('/');
+        } catch (err) {
+            console.error(err.response?.data?.message || err.message);
+            setError(err.response?.data?.message || 'Login failed. Check your credentials.');
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Signup</h2>
+        <form onSubmit={handleLogin}>
+            <h2>Login</h2>
             <input
-                name="username"
+                type="text"
                 placeholder="Username"
-                value={name}
-                onChange={(e) => setName(e.target.value)} // Update state
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
             />
             <input
-                name="email"
-                placeholder="Email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)} // Update state
-                required
-            />
-            <input
-                name="password"
                 type="password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} // Update state
+                onChange={(e) => setPassword(e.target.value)}
                 required
             />
-            <button type="submit">Signup</button>
-            {message && <p>{message}</p>} {/* Display success or error message */}
+            <button type="submit">Login</button>
+            {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
         </form>
     );
 };
 
-export default Signup;
+export default Login;

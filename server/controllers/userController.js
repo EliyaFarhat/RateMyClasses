@@ -4,9 +4,15 @@ export const createUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        // Validate that all fields are provided
+        // Check if all fields are provided
         if (!username || !email || !password) {
             return res.status(400).json({ message: 'All fields are required' });
+        }
+
+        // Validate TMU email domain
+        const tmuEmailRegex = /^[a-zA-Z0-9._%+-]+@torontomu\.ca$/;
+        if (!tmuEmailRegex.test(email)) {
+            return res.status(400).json({ message: 'Only TMU students can sign up with a @torontomu.ca email address' });
         }
 
         // Check if the user already exists
@@ -17,9 +23,8 @@ export const createUser = async (req, res) => {
 
         // Create a new user
         const newUser = new User({ username, email, password });
-        await newUser.save(); // This triggers the `pre('save')` middleware to hash the password
+        await newUser.save();
 
-        // Respond with success
         res.status(201).json({ message: 'User created successfully', user: { id: newUser._id, username: newUser.username, email: newUser.email } });
     } catch (error) {
         console.error(error);

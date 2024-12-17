@@ -1,19 +1,27 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link for routing
+import { Link, useNavigate } from 'react-router-dom';
 import './CSS Files/Navbar.css';
+import { useAuth } from './AuthContext'; // Import useAuth hook
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // State for burger menu toggle
+  const { isLoggedIn, logout } = useAuth(); // Use isLoggedIn and logout from AuthContext
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen); // Manages true or false
+    setIsOpen(!isOpen); // Toggles the menu open/close state
+  };
+
+  const handleLogout = () => {
+    logout(); // Call logout from AuthContext
+    navigate('/'); // Redirect to the home page
   };
 
   return (
     <nav className="navbar">
       <div className="nav-left">
-        <a href="">Icon One</a>
-        <a href="">FAQ</a>
+        <Link to="/">Home</Link>
+        <Link to="/FAQ">FAQ</Link>
       </div>
 
       {/* Burger Menu for small screens */}
@@ -25,12 +33,20 @@ function Navbar() {
 
       {/* Navigation Links */}
       <div className={`nav-links ${isOpen ? 'active' : ''}`}>
-        <button>
-          <Link to="/login" className="nav-link">Login</Link>
-        </button>
-        <button>
-          <Link to="/signup" className="nav-link">Sign Up</Link>
-        </button>
+        {isLoggedIn ? (
+          <button onClick={handleLogout} className="nav-link">
+            Log Out
+          </button>
+        ) : (
+          <>
+            <button>
+              <Link to="/login" className="nav-link">Login</Link>
+            </button>
+            <button>
+              <Link to="/signup" className="nav-link">Sign Up</Link>
+            </button>
+          </>
+        )}
       </div>
     </nav>
   );
