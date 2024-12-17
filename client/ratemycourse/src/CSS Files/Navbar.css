@@ -108,6 +108,7 @@
     .burger-bar.open:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
     }
+}
 
 
 .nav-link {
