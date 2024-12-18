@@ -24,7 +24,7 @@ const CourseResults = () => {
     }, [query]);
 
     const handleAddReview = (courseCode) => {
-        navigate(`/courses/review/${courseCode}`); // Navigate to the Add Review page
+        navigate(`/courses/review/${courseCode}`); // Use courseId (_id)
     };
 
     if (loading) {
@@ -48,7 +48,7 @@ const CourseResults = () => {
                             </div>
                             <button
                                 className="add-review-btn"
-                                onClick={() => handleAddReview(course.courseCode)}
+                                onClick={() => handleAddReview(course._id)}
                             >
                                 Add Review
                             </button>

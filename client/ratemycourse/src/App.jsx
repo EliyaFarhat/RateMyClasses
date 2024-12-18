@@ -5,6 +5,7 @@ import Courses from './Courses';
 import CourseResults from './CourseResults'; // Import the CourseResults component
 import Signup from './Signup';
 import Login from './Login';
+import AddReview from './ReviewPage';  // Adjust path as necessary
 
 const App = () => {
   return (
@@ -16,6 +17,8 @@ const App = () => {
           <Route path="courses/results/:query" element={<CourseResults />} /> {/* Search results page */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/courses/review/:courseId" element={<AddReview />} />
+
         </Route>
       </Routes>
     </Router>

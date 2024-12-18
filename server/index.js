@@ -5,7 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 // routes
-import courseRoutes from './routes/courses.js'
+import courseRoutes from './routes/coursesRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import loginRoutes from './routes/loginRoute.js'
 
