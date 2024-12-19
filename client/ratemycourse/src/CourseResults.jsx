@@ -23,9 +23,13 @@ const CourseResults = () => {
         fetchCourses();
     }, [query]);
 
-    const handleAddReview = (courseCode) => {
-        navigate(`/courses/review/${courseCode}`); // Use courseId (_id)
+    const handleAddReview = (courseId) => {
+        navigate(`/courses/review/${courseId}`); // Navigate to the Add Review page
     };
+
+const handleCourseClick = (courseId) => {
+    navigate(`/courses/${courseId}`); // Navigate to the course detail page
+};
 
     if (loading) {
         return <p>Loading courses...</p>;
@@ -37,7 +41,11 @@ const CourseResults = () => {
             {courses.length > 0 ? (
                 <div className="course-cards">
                     {courses.map((course) => (
-                        <div key={course._id} className="course-card">
+                        <div
+                            key={course._id}
+                            className="course-card"
+                            onClick={() => handleCourseClick(course._id)} // Make card clickable
+                        >
                             <div className="course-info">
                                 <h3 className="course-code">{course.courseCode}</h3>
                                 <p className="course-description">{course.description}</p>
@@ -48,7 +56,10 @@ const CourseResults = () => {
                             </div>
                             <button
                                 className="add-review-btn"
-                                onClick={() => handleAddReview(course._id)}
+                                onClick={(e) => {
+                                    e.stopPropagation(); // Prevent clicking the button from triggering card click
+                                    handleAddReview(course._id);
+                                }}
                             >
                                 Add Review
                             </button>

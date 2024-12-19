@@ -35,21 +35,6 @@ export const addReview = async (req, res) => {
     }
 };
 
-// Route to get course details by ID
-export const getCourseDetails = async (req, res) => {
-    const { courseId } = req.params; // Extract course ID from URL
-    try {
-        const course = await Course.findById(courseId);
-        if (!course) {
-            return res.status(404).json({ message: "Course not found" });
-        }
-        res.status(200).json(course); // Send course data as response
-    } catch (error) {
-        console.error("Error fetching course details:", error.message);
-        res.status(500).json({ message: "Error fetching course details", error: error.message });
-    }
-};
-
 export const searchCourses = async (req, res) => {
     try {
         const searchTerm = req.query.query;
@@ -66,5 +51,24 @@ export const searchCourses = async (req, res) => {
     } catch (error) {
         console.error('Search error:', error);
         res.status(500).json({ message: "Error searching courses" });
+    }
+};
+
+
+
+export const getCourseById = async (req, res) => {
+    const { courseId } = req.params; // Get courseId from the URL
+
+    try {
+        // Find the course by ID
+        const course = await Course.findById(courseId);
+        if (!course) {
+            return res.status(404).json({ message: "Course not found" });
+        }
+
+        res.status(200).json(course); // Return the course details
+    } catch (error) {
+        console.error("Error fetching course details:", error.message);
+        res.status(500).json({ message: "Error fetching course details", error: error.message });
     }
 };

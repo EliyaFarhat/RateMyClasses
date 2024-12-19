@@ -6,6 +6,7 @@ import CourseResults from './CourseResults'; // Import the CourseResults compone
 import Signup from './Signup';
 import Login from './Login';
 import AddReview from './ReviewPage';  // Adjust path as necessary
+import CourseDetail from './CourseDetails';
 
 const App = () => {
   return (
@@ -18,6 +19,8 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/courses/review/:courseId" element={<AddReview />} />
+          <Route path="/courses/:courseId" element={<CourseDetail />} />
+
 
         </Route>
       </Routes>

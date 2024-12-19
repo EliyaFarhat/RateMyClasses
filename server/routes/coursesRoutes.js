@@ -1,20 +1,15 @@
-import express from "express";
-
-//.routes are paths to the functionality of http requests
-//e.g, router.get('/path/way)
-
-import { searchCourses, addReview, getCourseDetails} from "../controllers/courses.js";
+import express from 'express';
+import { searchCourses, addReview, getCourseById } from '../controllers/courses.js';
 
 const router = express.Router();
 
-router.get("/:courseId", getCourseDetails);  // Add this line to fetch course details
+// define the search route
+router.get("/search", searchCourses);
 
+// ,efine the route for fetching a course by ID
+router.get('/:courseId', getCourseById);
 
-
-router.get("/search", searchCourses)
-
-
-router.post("/:courseId/reviews", addReview); // Add this line
-
+// define the route for adding reviews to a course
+router.post("/:courseId/reviews", addReview);
 
 export default router;

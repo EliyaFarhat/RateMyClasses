@@ -98,3 +98,14 @@
 .searchthing{
     color: white !important;
 }
+
+.course-card {
+   
+    cursor: pointer; 
+
+}
+
+.course-card:hover {
+    transform: scale(1.05); /* Optional: Slight zoom effect on hover */
+
+}
