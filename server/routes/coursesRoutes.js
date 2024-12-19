@@ -1,5 +1,5 @@
 import express from 'express';
-import { searchCourses, addReview, getCourseById } from '../controllers/courses.js';
+import { searchCourses, addReview, getCourseById, removeAllReviews } from '../controllers/courses.js';
 
 const router = express.Router();
 
@@ -11,5 +11,8 @@ router.get('/:courseId', getCourseById);
 
 // define the route for adding reviews to a course
 router.post("/:courseId/reviews", addReview);
+
+router.delete("/:courseId/reviews", removeAllReviews);
+
 
 export default router;

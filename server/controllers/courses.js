@@ -72,3 +72,27 @@ export const getCourseById = async (req, res) => {
         res.status(500).json({ message: "Error fetching course details", error: error.message });
     }
 };
+
+
+export const removeAllReviews = async (req, res) => {
+    const { courseId } = req.params; // Extract courseId from URL
+
+    try {
+        // Find the course by ID
+        const course = await Course.findById(courseId);
+        if (!course) {
+            return res.status(404).json({ message: "Course not found" });
+        }
+
+        // Clear the reviews array and reset averageRating
+        course.reviews = [];
+        course.averageRating = 0;
+
+        await course.save(); // Save the updated course document
+
+        res.status(200).json({ message: "All reviews removed successfully", course });
+    } catch (error) {
+        console.error("Error removing reviews:", error.message);
+        res.status(500).json({ message: "Error removing reviews", error: error.message });
+    }
+};
