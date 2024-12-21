@@ -27,9 +27,9 @@ const CourseResults = () => {
         navigate(`/courses/review/${courseId}`); // Navigate to the Add Review page
     };
 
-const handleCourseClick = (courseId) => {
-    navigate(`/courses/${courseId}`); // Navigate to the course detail page
-};
+    const handleCourseClick = (courseId) => {
+        navigate(`/courses/${courseId}`); // Navigate to the course detail page
+    };
 
     if (loading) {
         return <p>Loading courses...</p>;
@@ -38,6 +38,8 @@ const handleCourseClick = (courseId) => {
     return (
         <div className="results-container">
             <h2 className='searchthing'>Search Results for "{query}"</h2>
+            
+      
             {courses.length > 0 ? (
                 <div className="course-cards">
                     {courses.map((course) => (
