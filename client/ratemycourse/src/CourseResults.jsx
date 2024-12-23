@@ -53,7 +53,7 @@ const CourseResults = () => {
                                 <p className="course-description">{course.description}</p>
                                 <p className="">{course.prerequisite}</p>
                                 <p className="course-rating">
-                                    <strong>Average Rating:</strong> {course.rating || "N/A"}
+                                    <strong>Average Rating:</strong> {course.averageRating || "N/A"}
                                 </p>
                             </div>
                             <button

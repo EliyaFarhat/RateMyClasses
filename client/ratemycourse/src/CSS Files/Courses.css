@@ -20,7 +20,10 @@ input[type="text"] {
     padding: 10px;
     font-size: 1rem ;
     margin-right: 10px;
-    border-radius: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+  
 }
 
 button {

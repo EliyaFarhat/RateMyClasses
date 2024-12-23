@@ -115,3 +115,32 @@
     color: white; /* Set text color to white */
 
   }
+
+
+  .nav-user-section {
+    display: flex;
+    align-items: center; /* Align text and button vertically */
+    gap: 10px; /* Space between the text and button */
+  }
+  
+  .nav-username {
+    color: #fff; /* Text color */
+    font-size: 18px; /* Adjust font size as needed */
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  .nav-logout-button {
+    background-color: #000; /* Match the button's background with your design */
+    color: #fff; /* Button text color */
+    border: none; /* Remove borders */
+    border-radius: 20px; /* Rounded corners */
+    padding: 8px 16px; /* Add padding for a better look */
+    font-size: 16px; /* Adjust the font size */
+    cursor: pointer; /* Show a pointer on hover */
+    transition: background-color 0.3s ease; /* Add a hover effect */
+  }
+  
+  .nav-logout-button:hover {
+    background-color: #333; /* Darken the button on hover */
+  }
+  

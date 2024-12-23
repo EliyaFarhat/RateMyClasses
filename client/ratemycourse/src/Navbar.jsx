@@ -36,11 +36,13 @@ function Navbar() {
       <div className={`nav-links ${isOpen ? 'active' : ''}`}>
         {isLoggedIn ? (
           <>
-          <span className="nav-username">Hello, {username || 'Guest'}</span>
+          <div className="nav-user-section">
+  <span className="nav-username">Hello, {username}</span>
+  <button onClick={handleLogout} className="nav-link nav-logout-button">
+    Log Out
+  </button>
+</div>
 
-            <button onClick={handleLogout} className="nav-link">
-              Log Out
-            </button>
           </>
         ) : (
           <>

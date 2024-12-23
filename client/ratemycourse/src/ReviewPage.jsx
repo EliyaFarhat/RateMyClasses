@@ -15,6 +15,9 @@ const AddReview = () => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
+
+
+    
     e.preventDefault();
     if (!isLoggedIn) {
       navigate("/login");
@@ -39,7 +42,7 @@ const AddReview = () => {
       setMessage("Review added successfully!");
       setRating("");
       setComment("");
-      setTimeout(() => navigate(`/`), 2000);
+      setTimeout(() => navigate(`/courses/${courseId}`), 2000);
     } catch (error) {
       console.error("Error adding review:", error.response?.data?.message || error.message);
       setMessage("Failed to add review. Please try again.");

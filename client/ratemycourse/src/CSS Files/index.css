@@ -33,8 +33,9 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background:rgb(0, 0, 0);
+  background:rgb(255, 0, 64);
   transform-origin: bottom;
+  z-index: 5;
 } 
 
 .slide-out{
@@ -43,6 +44,7 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background:rgb(0, 0, 0);
+  background:rgb(255, 0, 64);
   transform-origin: top;
+  z-index: 5;
 } 

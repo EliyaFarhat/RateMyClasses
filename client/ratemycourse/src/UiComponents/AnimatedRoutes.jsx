@@ -16,12 +16,12 @@ function AnimatedRoutes() {
         <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Courses />} /> {/* Home page with courses */}
-            <Route path="courses/results/:query" element={<CourseResults />} /> {/* Search results */}
-            <Route path="signup" element={<Signup />} /> {/* Signup page */}
-            <Route path="login" element={<Login />} /> {/* Login page */}
-            <Route path="courses/review/:courseId" element={<AddReview />} /> {/* Add review page */}
-            <Route path="courses/:courseId" element={<CourseDetail />} /> {/* Course details */}
+            <Route path="/" element={<Courses />} /> 
+            <Route path="courses/results/:query" element={<CourseResults />} /> 
+            <Route path="signup" element={<Signup />} /> 
+            <Route path="login" element={<Login />} /> 
+            <Route path="courses/review/:courseId" element={<AddReview />} /> 
+            <Route path="courses/:courseId" element={<CourseDetail />} /> 
             </Route>
         </Routes>
         </AnimatePresence>
