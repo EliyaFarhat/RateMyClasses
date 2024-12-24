@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './CSS Files/CourseDetail.css'; // Import the CSS file for styling
+import {useNavigate} from 'react-router-dom'
+import './CSS Files/CourseDetail.css'; 
 
 const CourseDetail = () => {
-    const { courseId } = useParams(); // Extract courseId from the URL parameters
+    const { courseId } = useParams(); 
     const [course, setCourse] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+
+    const handleAddReview = (courseID) => {
+        navigate(`/courses/review/${courseID}`);
+    };
+
 
     useEffect(() => {
         const fetchCourse = async () => {
@@ -26,12 +34,19 @@ const CourseDetail = () => {
     if (loading) return <p>Loading course details...</p>;
 
     if (!course) return <p>Course not found.</p>;
+    
 
     return (
         <div className="course-detail-container">
             <div className="course-detail">
                 <h2 className="course-title">{course.courseName} ({course.courseCode})</h2>
                 <p className="course-description">{course.description}</p>
+                <button className='add-review-button'   
+                onClick={(e) => {
+                                    e.stopPropagation(); // Prevent clicking the button from triggering card click
+                                    handleAddReview(course._id);
+                                    console.log('hello')
+                                }}>Add Review</button>
 
                 <p className="course-rating">
                     <strong>Average Rating:</strong> {course.averageRating?.toFixed(1) || "N/A"}

@@ -1,12 +1,12 @@
 /* Updated CourseDetail.css */
 
 .course-detail-container {
-    margin-top: 80px; /* Adjust based on your navbar height */
+    margin-top: 80px; 
     padding: 20px;
     font-family: Arial, sans-serif;
     color: #333;
     background-color: #f9f9f9;
-    box-sizing: border-box; /* Ensure padding doesn't affect width calculations */
+    box-sizing: border-box; 
 }
 
 .course-detail {
@@ -72,4 +72,20 @@
 .no-reviews {
     font-size: 1rem;
     color: #777;
+}
+
+.add-review-button {
+    background-color: #e66b4c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-review-button:hover {
+    background-color: #ca5c41; 
+    color: white; 
+    
 }

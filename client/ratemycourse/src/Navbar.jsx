@@ -22,7 +22,9 @@ function Navbar() {
     <nav className="navbar">
       <div className="nav-left">
         <Link to="/">Home</Link>
-        <Link to="/FAQ">FAQ</Link>
+        <a href="https://github.com/EliyaFarhat/RateMyClasses" target="_blank" rel="noopener noreferrer">
+    GitHub
+  </a>
       </div>
 
       {/* Burger Menu for small screens */}

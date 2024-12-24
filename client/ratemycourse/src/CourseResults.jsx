@@ -24,11 +24,11 @@ const CourseResults = () => {
     }, [query]);
 
     const handleAddReview = (courseId) => {
-        navigate(`/courses/review/${courseId}`); // Navigate to the Add Review page
+        navigate(`/courses/review/${courseId}`);
     };
 
     const handleCourseClick = (courseId) => {
-        navigate(`/courses/${courseId}`); // Navigate to the course detail page
+        navigate(`/courses/${courseId}`); 
     };
 
     if (loading) {

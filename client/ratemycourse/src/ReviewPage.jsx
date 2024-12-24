@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
@@ -6,19 +6,31 @@ import { useAuth } from "./AuthContext";
 const AddReview = () => {
   const { courseId } = useParams();
   const { isLoggedIn, username } = useAuth();
-  const { state } = useLocation(); // Access state passed from navigation
-  const courseName = state?.courseName || "Unknown Course"; // Fallback if courseName is not provided
   const navigate = useNavigate();
+  const [courseName, setCourseName] = useState(''); 
 
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
   const [message, setMessage] = useState("");
 
+
+  useEffect(() => {
+    const fetchCourseName = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/courses/${courseId}`);
+        setCourseName(response.data.courseName); 
+      } catch (error) {
+        console.error("Error fetching course name:", error);
+        setCourseName("Course not found");  
+      }
+    };
+
+    fetchCourseName();
+  }, [courseId]); // Only refetch if courseId changes
+
   const handleSubmit = async (e) => {
-
-
-    
     e.preventDefault();
+
     if (!isLoggedIn) {
       navigate("/login");
       return;
@@ -51,17 +63,18 @@ const AddReview = () => {
 
   return (
     <div className="add-review-container">
-      <h3>Add Review for Course: {courseId}</h3> {/* Display course name */}
+      <h2>Add Review for: {courseName}</h2>  
       {!isLoggedIn ? (
-        <p>You must be logged in to submit a review.</p>
+        <p className="login-warning">You must be logged in to submit a review.</p>
       ) : (
-        <>
-          {message && <p>{message}</p>}
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Rating (1-5):</label>
+        <div className="review-form">
+          {message && <p className={`message ${message.includes("successfully") ? "success" : "error"}`}>{message}</p>}
+          <form onSubmit={handleSubmit} className="form">
+            <div className="form-group">
+              <label htmlFor="rating">Rating (1-5):</label>
               <input
                 type="number"
+                id="rating"
                 value={rating}
                 onChange={(e) => setRating(e.target.value)}
                 min="1"
@@ -69,17 +82,18 @@ const AddReview = () => {
                 required
               />
             </div>
-            <div>
-              <label>Review :</label>
+            <div className="form-group">
+              <label htmlFor="comment">Review:</label>
               <textarea
+                id="comment"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 required
               ></textarea>
             </div>
-            <button type="submit">Submit Review</button>
+            <button type="submit" className="submit-button">Submit Review</button>
           </form>
-        </>
+        </div>
       )}
     </div>
   );
