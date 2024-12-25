@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 import './CSS Files/CourseDetail.css'; 
-
+//add reviews here
 const CourseDetail = () => {
     const { courseId } = useParams(); 
     const [course, setCourse] = useState(null);
@@ -59,9 +59,9 @@ const CourseDetail = () => {
                     course.reviews.map((review, index) => (
                         <div key={index} className="review-card">
                             <p><strong>User:</strong> {review.user}</p>
-                            <p><strong>Rating:</strong> {review.rating}/5</p>
+                            <p><strong >Rating:</strong> {review.rating}/5</p>
                             <p><strong>Comment:</strong> {review.comment}</p>
-                            <p><strong>Professor Name :</strong> {review.professor}</p>
+                            <p><strong>Professor:</strong> {review.professor}</p>
                             <p className="review-date"><em>Reviewed on: {new Date(review.createdAt).toLocaleDateString()}</em></p>
                         </div>
                     ))

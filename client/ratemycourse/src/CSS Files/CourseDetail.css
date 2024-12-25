@@ -2,10 +2,12 @@
 .course-detail-container {
     margin-top: 80px; 
     padding: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
+    color: #000000;
     background-color: #f9f9f9;
     box-sizing: border-box; 
+    max-width: 1000px
+    
+
 }
 
 .course-detail {
@@ -17,13 +19,19 @@
 .course-title {
     font-size: 1.8rem;
     color: #000000;
+
 }
 
 .course-description {
     font-size: 1rem;
     color: #000000 !important;
     margin: 10px 0;
+    max-height: 150px;   
+    overflow: hidden;    
+    text-overflow: ellipsis; 
+    white-space: normal; 
 }
+
 
 .course-rating {
     font-size: 1.2rem;
@@ -74,7 +82,7 @@
 }
 
 .add-review-button {
-    background-color: #e66b4c;
+    background-color: #000000;
     color: #fff;
     border: none;
     padding: 8px 12px;
@@ -84,7 +92,7 @@
 }
 
 .add-review-button:hover {
-    background-color: #ca5c41; 
+    background-color: #2e2e2e; 
     color: white; 
     
 }

@@ -55,7 +55,7 @@ const CourseResults = () => {
                                 <p className="course-rating">
                                     <strong
                                     style={{
-                                        color: course.averageRating >= 3 ? "#3af168" : "red" //checks if its greater than 3, make it green if yes, no otehrwise
+                                        color: course.averageRating >= 3 ? "#3af168" : "#f33232" //checks if its greater than 3, make it green if yes, no otehrwise
                                     }}
                                     >
                                         Average Rating : {course.averageRating}

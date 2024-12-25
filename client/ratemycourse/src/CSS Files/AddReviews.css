@@ -76,7 +76,7 @@
   }
   
   .login-warning {
-    color: #b30000;
+    color: #f33232;
     font-weight: bold;
     text-align: center;
   }
@@ -88,7 +88,7 @@
   }
   
   .message.success {
-    color: green;
+    color: rgb(5, 255, 5);
   }
   
   .message.error {
@@ -112,3 +112,29 @@
   }
   
 
+  .star-rating {
+    display: flex;
+    gap: 10px; 
+    font-size: 3rem; 
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .star {
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  
+  .star.filled {
+    color: #ffdd00; 
+    transform: scale(1.2); 
+  }
+  
+  .star:hover {
+    transform: scale(1.5); 
+
+  }
+  
+  .star-rating span {
+    display: inline-block;
+  }
+  

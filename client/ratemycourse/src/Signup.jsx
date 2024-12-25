@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../src/CSS Files/SignUp.css'; // Import the CSS file
-
+import {useNavigate} from "react-router-dom"
 const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,6 +20,10 @@ const Signup = () => {
                 password,
             });
             setMessage('Signup successful!');
+            setTimeout(() => {
+                navigate("/login");
+            }, 1000); 
+   
         } catch (err) {
             setMessage('Signup failed. Please try again.');
         }
@@ -48,8 +54,13 @@ const Signup = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type="submit">Signup</button>
-                {message && <p>{message}</p>}
+                <button type="submit"
+
+                
+                
+                >Signup</button>
+                {message && <p style={{ color: "#6df53b" }}>{message}</p>}
+
             </form>
         </div>
     );

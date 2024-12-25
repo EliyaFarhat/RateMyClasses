@@ -1,41 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
-import './CSS Files/AddReviews.css'
-
+import './CSS Files/AddReviews.css';
 
 const AddReview = () => {
   const { courseId } = useParams();
   const { isLoggedIn, username } = useAuth();
   const navigate = useNavigate();
-  const [courseName, setCourseName] = useState(''); 
-  const [courseCode, setCourseCode] = useState(''); 
-
-
-  const [rating, setRating] = useState("");
-  const [comment, setComment] = useState("");
-  const [message, setMessage] = useState("");
-  const [professor, setProfessor] = useState("")
-
-  
-
+  const [courseName, setCourseName] = useState('');
+  const [courseCode, setCourseCode] = useState('');
+  const [rating, setRating] = useState(null);
+  const [hoverRating, setHoverRating] = useState(null); // For hover effect
+  const [comment, setComment] = useState('');
+  const [message, setMessage] = useState('');
+  const [professor, setProfessor] = useState('');
 
   useEffect(() => {
     const fetchCourseName = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/courses/${courseId}`);
-        setCourseName(response.data.courseName); 
-        setCourseCode(response.data.courseCode); 
-
+        setCourseName(response.data.courseName);
+        setCourseCode(response.data.courseCode);
       } catch (error) {
         console.error("Error fetching course name:", error);
-        setCourseName("Course not found");  
+        setCourseName("Course not found");
       }
     };
 
     fetchCourseName();
-  }, [courseId]); // Only refetch if courseId changes
+  }, [courseId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,24 +41,24 @@ const AddReview = () => {
 
     try {
       await axios.post(
-        `http://localhost:5000/courses/${courseId}/reviews`, //sending user, rating, rating 
+        `http://localhost:5000/courses/${courseId}/reviews`, 
         {
           user: username,
           rating: parseInt(rating, 10),
           comment,
-          professor, 
+          professor,
         },
         {
           headers: {
-            "Content-Type": "application/json", //used to tell server what type of data to parse through
+            "Content-Type": "application/json",
           },
         }
       );
 
       setMessage("Review added successfully!");
-      setRating("");
-      setComment("");
-      setProfessor("");
+      setRating(null);
+      setComment('');
+      setProfessor('');
       setTimeout(() => navigate(`/courses/${courseId}`), 2000);
     } catch (error) {
       console.error("Error adding review:", error.response?.data?.message || error.message);
@@ -74,7 +68,7 @@ const AddReview = () => {
 
   return (
     <div className="add-review-container">
-      <h2>Add Review for: {courseName} ({courseCode})</h2>  
+      <h2>Add Review for: {courseName} ({courseCode})</h2>
       {!isLoggedIn ? (
         <p className="login-warning">You must be logged in to submit a review.</p>
       ) : (
@@ -85,26 +79,27 @@ const AddReview = () => {
             </p>
           )}
           <form onSubmit={handleSubmit} className="form">
-            {/* Rating Field */}
+      
             <div className="form-group">
               <label htmlFor="rating">Overall Rating (1-5):</label>
-              <select
-                id="rating"
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-                required
-              >
-                <option value="" disabled>
-                  Select Rating
-                </option>
-                <option value="1">⭐ - Poor</option>
-                <option value="2">⭐⭐ - Fair</option>
-                <option value="3">⭐⭐⭐ - Good</option>
-                <option value="4">⭐⭐⭐⭐ - Very Good</option>
-                <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
-              </select>
+            <div className="star-rating">
+  {[1, 2, 3, 4, 5].map((star) => (
+    <span
+      key={star}
+      className={`star ${hoverRating >= star || rating >= star ? 'filled' : ''}`}
+      onMouseEnter={() => setHoverRating(star)}
+      onMouseLeave={() => setHoverRating(null)}
+      onClick={() => setRating(star)}
+      role="button"
+      aria-label={`Rate ${star} stars`}
+    >
+      {hoverRating >= star || rating >= star ? '🌟' : '⭐'}
+    </span>
+  ))}
+</div>
+
             </div>
-  
+
             {/* Comment Field */}
             <div className="form-group">
               <label htmlFor="comment">Review:</label>
@@ -113,28 +108,27 @@ const AddReview = () => {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 required
-                placeholder="Example: Amazing course taught by professor Alex Ufkes!"
+                placeholder="Example: Amazing course content!!"
               ></textarea>
             </div>
-  
+
             {/* Professor Name Field */}
             <div className="form-group professor-name">
-              <label htmlFor="professor">Professor</label>
-              <textarea 
+              <label htmlFor="professor">Professor (Optional) </label>
+              <textarea
                 id="professor"
                 value={professor}
                 onChange={(e) => setProfessor(e.target.value)}
-                placeholder="Taught by Professor ... (optional)"
+                placeholder="Taught by .. " 
               ></textarea>
             </div>
-  
+
             <button type="submit" className="submit-button">Submit Review</button>
           </form>
         </div>
       )}
     </div>
   );
-  
 };
 
 export default AddReview;

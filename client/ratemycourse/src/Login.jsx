@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
-import transition from "../src/UiComponents/Transition";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -116,4 +115,4 @@ const styles = {
     },
 };
 
-export default transition(Login);
+export default Login;

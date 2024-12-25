@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './CSS Files/Navbar.css';
 import { useAuth } from './AuthContext'; // Import useAuth hook
-import transition from "../src/UiComponents/Transition";
+
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,4 +61,4 @@ function Navbar() {
   );
 }
 
-export default transition(Navbar);
+export default Navbar;
