@@ -8,7 +8,6 @@ import AddReview from '../ReviewPage';
 import CourseDetail from '../CourseDetails';
 import Layout from '../Layout'; // Import the new Layout component
 import { AnimatePresence } from 'framer-motion'
-
 function AnimatedRoutes() {
     const location = useLocation();
 
