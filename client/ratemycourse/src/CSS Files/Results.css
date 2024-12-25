@@ -1,26 +1,29 @@
-/* Container for the entire results page */
+
 .results-container {
     margin: 20px auto;
     max-width: 900px;
     padding: 10px;
-    color: #333;
+    color: #ffffff;
 }
 
-/* Title */
+
 .results-container h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #444;
+    color: #ffffff;
 }
 
-/* Cards container */
+
 .course-cards {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-/* Individual course card */
+.courseText{
+    color: white;
+}
+
 .course-card {
     display: flex;
     justify-content: space-between;
@@ -28,7 +31,7 @@
     background: #000000;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
     transition: transform 0.2s ease;
 }
 
@@ -36,7 +39,7 @@
     transform: scale(1.02);
 }
 
-/* Course info section */
+
 .course-info {
     display: flex;
     flex-direction: column;
@@ -50,20 +53,16 @@
     color: #ffffc1;;
 }
 
-.course-description {
-    font-size: 14px;
-    color: #ffffff;
-}
 
 .course-rating {
     font-size: 13px;
-    color: #777;
+    color: #fcfcfc;
 }
 
-/* Add Review button */
+
 .add-review-btn {
-    background-color: #e66b4c;
-    color: #fff;
+    background-color: #ffffc1;
+    color: black;
     border: none;
     padding: 8px 12px;
     border-radius: 5px;
@@ -72,11 +71,6 @@
     font-size: 14px;
 }
 
-.add-review-btn:hover {
-    background-color: #ad5038;
-}
-
-/* Home button */
 .home-btn {
     display: block;
     margin: 20px auto;
@@ -104,7 +98,3 @@
 
 }
 
-.course-card:hover {
-    transform: scale(1.05); /* Optional: Slight zoom effect on hover */
-
-}

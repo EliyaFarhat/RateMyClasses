@@ -61,6 +61,7 @@ const CourseDetail = () => {
                             <p><strong>User:</strong> {review.user}</p>
                             <p><strong>Rating:</strong> {review.rating}/5</p>
                             <p><strong>Comment:</strong> {review.comment}</p>
+                            <p><strong>Professor Name :</strong> {review.professor}</p>
                             <p className="review-date"><em>Reviewed on: {new Date(review.createdAt).toLocaleDateString()}</em></p>
                         </div>
                     ))

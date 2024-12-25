@@ -1,4 +1,3 @@
-/* Updated CourseDetail.css */
 
 .course-detail-container {
     margin-top: 80px; 
@@ -17,18 +16,18 @@
 
 .course-title {
     font-size: 1.8rem;
-    color: #2c3e50;
+    color: #000000;
 }
 
 .course-description {
     font-size: 1rem;
-    color: #555;
+    color: #000000 !important;
     margin: 10px 0;
 }
 
 .course-rating {
     font-size: 1.2rem;
-    color: #8e44ad;
+    color: #000000;
     margin-top: 10px;
 }
 
@@ -45,7 +44,7 @@
 
 .reviews-title {
     font-size: 1.5rem;
-    color: #3498db;
+    color: #000000;
     margin-bottom: 15px;
 }
 

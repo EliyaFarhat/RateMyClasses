@@ -6,6 +6,7 @@ const reviewSchema = new mongoose.Schema({
     rating: { type: Number, min: 1, max: 5, required: true },
     comment: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
+    professor: {type:String, required: false},
 });
 
 // Define the Course Schema
@@ -18,8 +19,8 @@ const courseSchema = mongoose.Schema({
     gpaWeight: { type: String },
     weeklyContact: { type: String },
     major: { type: String, required: true },
-    reviews: [reviewSchema], // Embed reviews directly in the course schema
-    averageRating: { type: Number, default: 0 }, // Optionally calculate average rating
+    reviews: [reviewSchema], // embed reviews directly in the course schema
+    averageRating: { type: Number, default: 0 }, 
 });
 
 // Create the Course Model

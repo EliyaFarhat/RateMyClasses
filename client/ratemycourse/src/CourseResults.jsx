@@ -50,16 +50,22 @@ const CourseResults = () => {
                         >
                             <div className="course-info">
                                 <h3 className="course-code">{course.courseCode}</h3>
-                                <p className="course-description">{course.description}</p>
+                                <p className="courseText">{course.description}</p>
                                 <p className="">{course.prerequisite}</p>
                                 <p className="course-rating">
-                                    <strong>Average Rating:</strong> {course.averageRating || "N/A"}
+                                    <strong
+                                    style={{
+                                        color: course.averageRating >= 3 ? "#3af168" : "red" //checks if its greater than 3, make it green if yes, no otehrwise
+                                    }}
+                                    >
+                                        Average Rating : {course.averageRating}
+                                        </strong> 
                                 </p>
                             </div>
                             <button
                                 className="add-review-btn"
                                 onClick={(e) => {
-                                    e.stopPropagation(); // Prevent clicking the button from triggering card click
+                                    e.stopPropagation(); 
                                     handleAddReview(course._id);
                                 }}
                             >

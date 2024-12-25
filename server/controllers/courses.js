@@ -2,10 +2,10 @@ import Course from '../models/courseModel.js';
 
 export const addReview = async (req, res) => {
     const { courseId } = req.params; // Extract course ID from URL
-    const { user, rating, comment } = req.body; // Extract review data
+    const { user, rating, comment, professor } = req.body; // Extract review data
 
     try {
-        // Check if all fields are provided
+        
         if (!user || !rating || !comment) {
             return res.status(400).json({ message: "All fields are required" });
         }
@@ -17,7 +17,7 @@ export const addReview = async (req, res) => {
         }
 
         // Create the review object
-        const newReview = { user, rating, comment };
+        const newReview = { user, rating, comment, professor};
 
         // Add review to the course and update average rating
         course.reviews.push(newReview);
