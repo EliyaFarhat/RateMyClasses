@@ -1,5 +1,9 @@
 RateCoursesFromTMU
-Fullstack application using MERN + docker to maintain a consistent work environment, and postman to verify that api endpoints functioned as correctly. Students that attend TMU can create a review on any course offered at this university
+Fullstack application using MERN + docker to maintain a consistent work environment, and postman to verify that api endpoints functioned as correctly. Students that attend TMU can create a review on any course offered at this university 
+
+
+Can be accessed here:
+https://musical-sopapillas-35bae7.netlify.app/
 
 
 Demo : 
