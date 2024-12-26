@@ -3,7 +3,7 @@ Fullstack application using MERN + docker to maintain a consistent work environm
 
 
 Can be accessed here:
-
+https://ratemycoursesss.netlify.app/
 
 Demo : 
 
