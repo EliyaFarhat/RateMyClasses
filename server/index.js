@@ -32,7 +32,7 @@ const JWT_SECRET = process.env.JWT_SECRET; // Your secret key for JWT
 
 
 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(CONNECTION_URL)
 .then(() => {
   app.listen(PORT, () => {
       console.log(`Server running on port: ${PORT}`);
