@@ -14,10 +14,12 @@ dotenv.config(); // Load .env variables
 
 const app = express();
 
-// Middleware should come BEFORE routes
 
-app.use(cors());
-app.use(express.json()); // Add this middleware to parse JSON bodies
+
+app.use(cors({
+  origin: 'https://capable-cactus-d9ef00.netlify.app',  
+}));
+app.use(express.json()); 
 
 // Routes come after middleware
 app.use('/courses', courseRoutes);
@@ -26,9 +28,9 @@ app.use('/api', loginRoutes);
 
 
 
-const CONNECTION_URL = process.env.MONGO_URI; // Use environment variable
+const CONNECTION_URL = process.env.MONGO_URI; 
 const PORT = process.env.PORT || 5000;
-const JWT_SECRET = process.env.JWT_SECRET; // Your secret key for JWT
+const JWT_SECRET = process.env.JWT_SECRET; 
 
 
 
