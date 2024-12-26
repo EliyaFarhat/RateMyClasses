@@ -17,8 +17,10 @@ const app = express();
 
 
 app.use(cors({
-  origin: 'https://capable-cactus-d9ef00.netlify.app',  
+  origin: '*', 
 }));
+
+
 app.use(express.json()); 
 
 // Routes come after middleware
@@ -38,7 +40,7 @@ mongoose.connect(CONNECTION_URL)
 .then(() => {
   app.listen(PORT, () => {
       console.log(`Server running on port: ${PORT}`);
-      console.log("JWT_SECRET:", JWT_SECRET);
+
   });
 })
   .catch((error) => console.log(error.message));
