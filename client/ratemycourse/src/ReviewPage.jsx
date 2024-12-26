@@ -19,7 +19,7 @@ const AddReview = () => {
   useEffect(() => {
     const fetchCourseName = async () => {
       try {
-        const response = await axios.get(`https://ratemyclasses-3.onrender.com/courses/${courseId}`);
+        const response = await axios.get(`https://ratemyclasses.onrender.com/courses/${courseId}`);
         setCourseName(response.data.courseName);
         setCourseCode(response.data.courseCode);
       } catch (error) {

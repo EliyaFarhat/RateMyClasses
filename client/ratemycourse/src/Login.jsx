@@ -14,7 +14,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("https://ratemyclasses-3.onrender.com/api/login", {
+            const response = await axios.post("https://ratemyclasses.onrender.com/api/login", {
                 username,
                 password,
             });
