@@ -7,7 +7,6 @@ import './CSS Files/index.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* Wrap App with AuthProvider */}
     <AuthProvider>
       <App />
     </AuthProvider>

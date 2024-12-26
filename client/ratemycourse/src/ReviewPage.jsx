@@ -41,7 +41,7 @@ const AddReview = () => {
 
     try {
       await axios.post(
-        `https://ratemyclasses-3.onrender.com/courses/${courseId}/reviews`, 
+        `https://ratemyclasses.onrender.com/courses/${courseId}/reviews`, 
         {
           user: username,
           rating: parseInt(rating, 10),
@@ -100,7 +100,7 @@ const AddReview = () => {
 
             </div>
 
-            {/* Comment Field */}
+         
             <div className="form-group">
               <label htmlFor="comment">Review:</label>
               <textarea
@@ -112,7 +112,7 @@ const AddReview = () => {
               ></textarea>
             </div>
 
-            {/* Professor Name Field */}
+     
             <div className="form-group professor-name">
               <label htmlFor="professor">Professor (Optional) </label>
               <textarea
