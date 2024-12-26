@@ -3,7 +3,7 @@ Fullstack application using MERN + docker to maintain a consistent work environm
 
 
 Can be accessed here:
-https://musical-sopapillas-35bae7.netlify.app/
+[https://musical-sopapillas-35bae7.netlify.app/](https://ratemycoursesss.netlify.app/)
 
 
 Demo : 
