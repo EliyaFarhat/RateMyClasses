@@ -19,7 +19,7 @@ const CourseDetail = () => {
     useEffect(() => {
         const fetchCourse = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/courses/${courseId}`);
+                const response = await axios.get(`https://ratemyclasses-3.onrender.com/courses/${courseId}`);
                 setCourse(response.data);
             } catch (error) {
                 console.error('Error fetching course details:', error);

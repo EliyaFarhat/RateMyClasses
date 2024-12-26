@@ -12,7 +12,7 @@ const Courses = () => {
     // Fetch suggestions from the backend
     const fetchSuggestions = async (input) => {
         try {
-            const response = await axios.get('http://localhost:5000/courses/search', {
+            const response = await axios.get('https://ratemyclasses-3.onrender.com/courses/search', {
                 params: { query: input }, // Pass the user input as a query parameter
             });
             setSuggestions(response.data); // Update suggestions with the response data

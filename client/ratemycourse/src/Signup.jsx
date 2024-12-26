@@ -14,7 +14,7 @@ const Signup = () => {
         e.preventDefault();
         setMessage('');
         try {
-            const response = await axios.post('http://localhost:5000/users', {
+            const response = await axios.post('hhttps://ratemyclasses-3.onrender.com/users', {
                 username: name,
                 email,
                 password,
