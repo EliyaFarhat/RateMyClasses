@@ -2,7 +2,7 @@ RateCoursesFromTMU
 Fullstack application using MERN + docker to maintain a consistent work environment, and postman to verify that api endpoints functioned as correctly. Students that attend TMU can create a review on any course offered at this university 
 
 
-Can be accessed here:
+Can be accessed here (Note: The application may take 10-20 seconds to load.)
 https://ratemycoursesss.netlify.app/
 
 Demo : 
